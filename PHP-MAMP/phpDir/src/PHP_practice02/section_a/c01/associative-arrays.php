@@ -25,7 +25,10 @@
   <h2>Nutrition (per 100g)</h2>
 
   <?php
-  echo '<h3>Nutrition: <h3/>' . $nutrition['fat'] . '% <br/>' . $nutrition['sugar'] . '% <br/>'. $nutrition['salt'] . '% <br/>'
+  echo '<h3>Nutrition: <h3/> Fat content: '
+  . $nutrition['fat'] 
+  . '% <br/> Sugar content: ' . $nutrition['sugar'] 
+  . '% <br/> Salt content: '. $nutrition['salt'] . '%'
   ?>
 
 </body>
