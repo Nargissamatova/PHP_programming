@@ -18,7 +18,7 @@ $candy_price = 3;
 <body>
   <h1>The Candy Store</h1>
 <?php 
-echo '<h3>' . 'This is ' . $candy_name . ' price per pack is ' . $candy_price .'<h3/>';
+echo '<h3>' . 'This is ' . $candy_name . ' price per pack is ' . $candy_price .'$<h3/>';
 ?>
 </body>
 
