@@ -1,5 +1,7 @@
 <?php
 /* Write your code here */
+$price = 1.99;
+$packs = 100;
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +17,10 @@
   <p>
     <?php
     /* Write your code here */
+    for ($i=10; $i < $packs; $i++) { 
+      echo 'Number of packs: ' . $i . 'kpl
+      <br/> Price: ' . $i * $price . '€ <br/>';
+    }
     ?>
   </p>
 </body>
