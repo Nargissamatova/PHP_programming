@@ -4,6 +4,11 @@
   Write you php code here
 
    */
+$cost = 2;
+$item = 22;
+$subtotal = $cost * $item;
+$tax = ($subtotal/100)*20;
+$total = $subtotal + $tax;
 
 ?>
 <!DOCTYPE html>
@@ -17,6 +22,12 @@
 <body>
   <h1>The Candy Store</h1>
   <h2>Shopping Cart</h2>
-</body>
 
+  <p>Number of candies: <?= $item ?></p>
+  <p>Subtotal: <?= $subtotal ?></p>
+  <p>Tax: <?= $tax ?>%</p>
+  <p>Total: <?= $total ?>€</p>
+
+
+</body>
 </html>

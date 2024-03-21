@@ -4,6 +4,8 @@
   Write you php code here
 
    */
+  $name = ' Guest';
+  $greeting = 'Welcome';
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +18,9 @@
 
 <body>
   <h1>The Candy Store</h1>
-
+  <p>
+  <?=$greet = $greeting . $name ?>
+  </p>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 /*
 Write your code here
 */
+$isStock = 'yes';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,16 @@ Write your code here
 <body>
   <h1>The Candy Store</h1>
   <h2>Chocolate</h2>
+  <p>
   <?php
   /* Write your code here */
+  if ($isStock == true) {
+    echo 'In stock';
+  } else {
+    echo 'Sold out';
+  }
   ?>
+  </p>
 </body>
 
 </html>
