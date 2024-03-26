@@ -11,8 +11,8 @@ $greetings = [
     'Cia'
 ];
 
-$greetings_key = array_rand($greetings);
-$greetings = $greetings[$greetings_key];
+$greetings_key = array_rand($greetings); // it will output random index from greetings array
+$greetings = $greetings[$greetings_key]; // outputs value from greetings array
 
 // Array of best sellers, count items, list top items
 $bestsellers = [' notebook', ' pencil', ' ink'];
