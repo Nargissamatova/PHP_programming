@@ -1,5 +1,7 @@
 <?php
 // Write your code here
+$items_array = ['notebook', 'pencil', 'book', 'eraser', 'pen'];
+array_unshift($items_array, 'scissors');
 
 ?>
 <?php include 'includes/header.php'; ?>

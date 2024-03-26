@@ -26,5 +26,4 @@ echo 'In stock';
   ?>
   </h2>
 </body>
-
 </html>

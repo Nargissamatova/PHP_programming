@@ -18,9 +18,66 @@ Step 5: Check if condition is valid, if it is you can display
     "Age is valid" else "You must be 16-65 years old"
 
 */
+
+$min = '';
+$max = '';
+
+function is_number($number, int $min= 0, int $max = 100): bool {
+  return ($number >= $min and $number <= $max);
+};
+$valid = is_number($age, 16, 65);
+
+/* STEP 2 - hint
+int - checks the integer type
+function is_number($number, int min= 0, int $max = 100): bool {
+  return ($number >= $min and $number <= $max)
+}
+$valid = is_number($age, 16, 65);
+*/
 ?>
+
 <?php include 'includes/header.php'; ?>
 
-//Write PHP Code here
+<h2>
+<?php 
+if($valid){
+  echo 'Age is valid';
+}else{
+  echo 'You must be 16-65';
+}
+?>
+</h2>
 
 <?php include 'includes/footer.php'; ?>
+
+<!--
+
+$age = "";
+$number = "";
+
+function is_number($number, int $min = 0, int $max = 100): bool
+{
+    return ($number >= $min and $number <= $max);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  
+    $age = $_POST['age'];
+
+    $valid = is_number($age, 16, 65);
+
+    if ($valid) {
+        return print "Age is valid";
+    } else {
+        return print "You must be 16-65";
+    }}
+?>
+<?php // include 'includes/header.php';?>
+
+
+<form action="validate-number-range.php" method="post">
+<input type="search" name="age" /><br />
+<input type="submit" value="Submit Age" />
+</form>
+
+-->

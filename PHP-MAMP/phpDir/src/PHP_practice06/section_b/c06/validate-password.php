@@ -25,9 +25,29 @@ Step 7: Message can be for example "Password is valid" or if not string
 "Password is not strong enough."
 
 */
+
+$password = '';
+$message = '';
+function is_password(string $password): bool
+{
+  if(mb_strlen($password) >=8 && preg_match('/[A-Z]/', $password) && preg_match('/[a-z]/', $password) && preg_match('/[0-9]/', $password)) {
+    return true; // passed all tests
+  }
+  return false; // Invalid
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $password = $_POST['password'];
+  $valid = is_password($password);
+  $message = $valid ? 'Password is valid': 'Password is not strong enough';
+}
+
+
 ?>
 <?php include 'includes/header.php'; ?>
 
-/* Write PHP code here */
+<?= $message ?>
+<form action="validate-password.php" method="POST">
+  Password: <input type="password" name="password">
+</form>
 
 <?php include 'includes/footer.php'; ?>
