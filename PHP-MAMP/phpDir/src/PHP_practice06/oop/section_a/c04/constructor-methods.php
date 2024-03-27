@@ -37,9 +37,9 @@ Step 9: In the final row of the table, previous step is repeated using different
 class Account{
   public $number;
   public $type;
-  public $balance = 0.0 ;
+  public $balance;
 
-  public function __construct($number, $type, $balance) {
+  public function __construct(int $number, string $type, float $balance = 0.0) {
     $this->number = $number;
     $this->type = $type;
     $this->balance = $balance;
@@ -56,8 +56,8 @@ class Account{
   
 
 }
-$checking = new Account("89370389", "Checking", 10.00);
-$saving = new Account("89370389", "Savings", 3000.00);
+$checking = new Account(2234332, "Checking", 10.00);
+$saving = new Account(6335677, "Savings", 3000.00);
 
 ?>
 
@@ -91,3 +91,4 @@ $saving = new Account("89370389", "Savings", 3000.00);
 
 </table>
 <?php include 'includes/footer.php'; ?>
+
