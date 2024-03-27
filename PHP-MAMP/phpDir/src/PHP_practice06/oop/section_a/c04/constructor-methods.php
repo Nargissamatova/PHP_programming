@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /* Write your PHP code here
 
 Step 1: Use and declare php strict types
@@ -35,33 +37,57 @@ Step 9: In the final row of the table, previous step is repeated using different
 class Account{
   public $number;
   public $type;
-  public $balance;
+  public $balance = 0.0 ;
 
-  
+  public function __construct($number, $type, $balance) {
+    $this->number = $number;
+    $this->type = $type;
+    $this->balance = $balance;
 }
+  // Methods
+  function deposit(float $amount):float{
+    $this->balance += $amount;
+    return $this->balance;
+  }
+  function withdraw(float $amount):float{
+    $this->balance -= $amount;
+    return $this->balance;
+  }
+  
 
-
+}
+$checking = new Account("89370389", "Checking", 10.00);
+$saving = new Account("89370389", "Savings", 3000.00);
 
 ?>
+
+
 
 <?php include 'includes/header.php'; ?>
 <h2>Account Balances</h2>
 <table>
   <tr>
     <th>Date</th>
-
+    <th>Cheking</th>
+    <th>Savings</th>
   </tr>
   <tr>
     <td>23 June</td>
-
+    <td>$<?=$checking->balance?></td>
+    <td>$<?=$saving->deposit(250)?></td>
   </tr>
   <tr>
     <td>24 June</td>
-
+    <td>$<?=$checking->balance?></td>
+    <td>$<?=$saving->deposit(210)?></td>
   </tr>
   <tr>
     <td>25 June</td>
-
+    <td>$<?=$checking->balance?></td>
+    <td>$<?=$saving->deposit(300)?></td>
   </tr>
+  
+  
+
 </table>
 <?php include 'includes/footer.php'; ?>

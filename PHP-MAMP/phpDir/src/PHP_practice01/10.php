@@ -57,6 +57,20 @@
   <!--MAIN CONTENT-->
 
   <?php include "includes/footer.php"; ?>
+  
+  <!--
+    public function __construct($eyeColor, $nose, $furColor)
+  {
+    $this->eye_color = $eye_color;
+    $this->nose = $nose;
+    $this->fur_color = $fur_color;
+  }
+
+  public function ShowAll()
+  {
+    echo "Eye Color: $this->eye_color, Nose: $this->nose, Fur Color: $this->fur_color";
+  }
+  -->
 
   <!--
  class Dog {
