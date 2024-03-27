@@ -23,12 +23,29 @@
 
 		Step 5: Instantiate the class / create object and call it pitbull
 
-Step 6: Call the method ShowAll
-
-	
-
+    Step 6: Call the method ShowAll
 		
 	*/
+
+  class Dog{
+    // properties
+    public $eyeColor;
+    public $nose;
+    public $furColor;
+
+    // methods
+    function ShowAll(){
+      echo 'Eye color: ' . $this->eyeColor . '<br/>';
+      echo 'Nose: ' . $this->nose . '<br/>';
+      echo 'Fur color: ' . $this->furColor . '<br/>';
+
+    }
+  }
+  $husky = new Dog();
+  $husky->eyeColor = 'Blue';
+  $husky->nose = 'Pink';
+  $husky->furColor = 'Grey';
+  $husky->ShowAll()
 
 		?>
 
@@ -40,3 +57,19 @@ Step 6: Call the method ShowAll
   <!--MAIN CONTENT-->
 
   <?php include "includes/footer.php"; ?>
+
+  <!--
+ class Dog {
+    public $eye_color;
+    public $nose;
+    public $fur_color;
+    public function __construct($eye_color, $nose, $fur_color)
+    {
+        echo $this->$eye_color = $eye_color . '<br>';
+        echo $this->$nose = $nose . '<br>';
+        echo $this->$fur_color = $fur_color . '<br>';
+    }
+
+}
+$shaperd = new Dog('black', 'black', 'brown');
+-->

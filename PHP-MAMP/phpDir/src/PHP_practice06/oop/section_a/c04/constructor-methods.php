@@ -30,9 +30,17 @@ To call a method, you can use
 
 Step 9: In the final row of the table, previous step is repeated using different values. 
 
-
-
 */
+
+class Account{
+  public $number;
+  public $type;
+  public $balance;
+
+  
+}
+
+
 
 ?>
 
