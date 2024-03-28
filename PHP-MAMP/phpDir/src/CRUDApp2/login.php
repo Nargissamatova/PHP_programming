@@ -37,19 +37,22 @@ if($conn->connect_error){
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 
-if(!$result){
- die('Query insertation failed');
-}
+//if(!$result){
+// die('Query insertation failed');
+//}
 
 if(!$result){
     die('Reading db records failed');
-}
+};
 
 while($row = mysqli_fetch_assoc($result)){
-    print_r($row);
-}
-
 ?>
+<pre>
+<?php
+    print_r($row);
+?>
+</pre>
+<?php } ?>
 
 <form action="login.php" method="post">
     <label for="username">Username</label>
