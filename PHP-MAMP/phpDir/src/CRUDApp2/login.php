@@ -31,18 +31,23 @@ if($conn->connect_error){
 
 // create the records inside db
 
-$query = "INSERT INTO users(username, password)";
-$query .= "VALUES('$user', '$pass')";
+//$query = "INSERT INTO users(username, password)";
+//$query .= "VALUES('$user', '$pass')";
 
+$query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
+
 if(!$result){
-    die('Query insertation failed');
+ die('Query insertation failed');
 }
 
+if(!$result){
+    die('Reading db records failed');
+}
 
-
-
-
+while($row = mysqli_fetch_assoc($result)){
+    print_r($row);
+}
 
 ?>
 
