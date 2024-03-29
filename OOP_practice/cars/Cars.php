@@ -15,9 +15,9 @@ class Car {
     public function setColor($prop){
      $allowedColors = ['blue', 'white', 'green', 'yellow'];
      if(in_array($prop, $allowedColors)){
-        $this->color = $prop;
+        $this->color = $prop; // Setting the color property to the provided color
      }else{
-        $this->color = "not allowed";
+        $this->color = "not allowed"; // Setting color to "not allowed" if it's not in the allowed list
      }
     }
 
@@ -28,6 +28,3 @@ class Car {
 
 
 };
-$car1 = new Car('Toyota', 1995, 'white');
-$car1->setColor('yellow');
-$car1->displayData();
