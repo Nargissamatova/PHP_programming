@@ -2,56 +2,27 @@
 class Car {
     // Properties
     private $brand;
-    private $model;
     private $year;
+    public $color;
 
     // Constructor
-    public function __construct($brand, $model, $year) {
+    public function __construct($brand, $year, $color) {
         $this->brand = $brand;
-        $this->model = $model;
         $this->year = $year;
+        $this->color = $color;
+    }
+    // Setter
+    public function setColor($prop){
+     $this->color = $prop;
     }
 
-    // Getter for brand
-    public function getBrand() {
-        return $this->brand;
+    // Method
+    public function displayData(){
+        echo "<h3>Car brand: $this->brand, year: $this->year, color: $this->color </h3>";
     }
 
-    // Setter for brand
-    public function setBrand($brand) {
-        $this->brand = $brand;
-    }
 
-    // Getter for model
-    public function getModel() {
-        return $this->model;
-    }
-
-    // Setter for model
-    public function setModel($model) {
-        $this->model = $model;
-    }
-
-    // Getter for year
-    public function getYear() {
-        return $this->year;
-    }
-
-    // Setter for year
-    public function setYear($year) {
-        $this->year = $year;
-    }
-
-    // Method to display car details
-    public function displayDetails() {
-        echo "Brand: {$this->brand}, Model: {$this->model}, Year: {$this->year}<br>";
-    }
-}
-
-// Create objects (instances) of the Car class
-$car1 = new Car("Toyota", "Corolla", 2020);
-
-// Using getter and setter methods
-echo "Before setting: " . $car1->getBrand() . "<br>"; // Output: Toyota
-$car1->setBrand("Honda");
-echo "After setting: " . $car1->getBrand() . "<br>"; // Output: Honda
+};
+$car1 = new Car('Toyota', 1995, 'blue');
+$car1->setColor('white');
+$car1->displayData();
