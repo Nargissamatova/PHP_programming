@@ -13,7 +13,12 @@ class Car {
     }
     // Setter
     public function setColor($prop){
-     $this->color = $prop;
+     $allowedColors = ['blue', 'white', 'green', 'yellow'];
+     if(in_array($prop, $allowedColors)){
+        $this->color = $prop;
+     }else{
+        $this->color = "not allowed";
+     }
     }
 
     // Method
@@ -23,6 +28,6 @@ class Car {
 
 
 };
-$car1 = new Car('Toyota', 1995, 'blue');
-$car1->setColor('white');
+$car1 = new Car('Toyota', 1995, 'white');
+$car1->setColor('yellow');
 $car1->displayData();
