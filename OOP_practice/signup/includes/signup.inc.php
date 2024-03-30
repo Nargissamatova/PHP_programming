@@ -7,4 +7,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once "../Signup.php"; // child class, comes after
 
     $signup = new Signup($username, $pwd);
+    $signup->signupUser();
 }

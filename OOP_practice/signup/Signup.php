@@ -30,7 +30,7 @@ class Signup extends Dbh
         }
     }
 
-    private function signupUser()
+    public function signupUser()
     {
         // Error handler
         if ($this->isEmptySubmit()) { // if it s true, returns error
@@ -38,7 +38,6 @@ class Signup extends Dbh
             die();
         }
         // If no errors, signup user
-
-
+        $this->insertUser();
     }
 }
