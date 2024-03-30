@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
   $id = $_POST['id'];
 
   //Update the records in db
-  $query = "DELETE FROM users ";
+  $query = "UPDATE users SET ";
   $query .= "username = '$username', ";
   $query .= "password = '$password' ";
   $query .= "WHERE id = $id";
@@ -38,9 +38,8 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <h2>Update</h2>
-  <form action="update.php" method="post">
-
+  <form action="delete.php" method="post">
+<h2>Delete</h2>
     <label for="username"> Username </label>
     <input type="text" name="username">
     <label for="password"> Password </label>
@@ -53,7 +52,7 @@ if (isset($_POST['submit'])) {
       }
       ?>
     </select>
-    <input type="submit" name="submit" value="UPDATE">
+    <input type="submit" name="submit" value="DELETE">
 
   </form>
 
