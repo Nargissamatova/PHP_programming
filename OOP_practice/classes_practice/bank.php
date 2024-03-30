@@ -17,6 +17,7 @@ class BankAccount
     public $accountNumber;
     public $balance;
     public $ownerName;
+    private $transactions = [];
 
     public function __construct($accountNumber, $balance, $ownerName)
     {
@@ -24,23 +25,31 @@ class BankAccount
         $this->balance = $balance;
         $this->ownerName = $ownerName;
     }
+
     // Methods
     public function setDeposit($deposit)
     {
+        $this->transactions[] = $deposit; // Append the deposit amount to transactions array
+        $this->balance += $deposit;
         return $deposit;
     }
+
     public function setWithdraw($withdrawAmount)
     {
         if ($this->balance < $withdrawAmount) {
             echo 'Your account balance should be higher than the withdrawal amount ';
         } else {
+            $this->transactions[] = -$withdrawAmount; // Append the negative withdrawal amount to transactions array
+            $this->balance -= $withdrawAmount;
             return $withdrawAmount;
         }
     }
+
     public function checkBalance()
     {
-        // Method to check balance (return the current balance)
-        return $this->balance;
+        // Calculate the final balance by summing up all transactions
+        $finalBalance = $this->balance + array_sum($this->transactions);
+        return $finalBalance;
     }
 }
 
@@ -48,8 +57,6 @@ $test = new BankAccount(324665, 50, 'John Doe');
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["checkBalance"])) {
     $finalBalance = $test->checkBalance();
 }
-
-
 ?>
 
 <!DOCTYPE html>
