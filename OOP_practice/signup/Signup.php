@@ -15,9 +15,30 @@ class Signup extends Dbh
     {
         $query = "INSERT INTO users ('username', 'pwd) VALUES (:username, :pwd);"; //inserting data to sql table
 
-        $stmt = $this->connect()->prepare($query);
+        $stmt = parent::connect()->prepare($query);
         $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":pwd", $this->pwd);
         $stmt->execute();
+    }
+
+    private function isEmptySubmit()
+    {
+        if (isset($this->username) && isset($this->pwd)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private function signupUser()
+    {
+        // Error handler
+        if ($this->isEmptySubmit()) { // if it s true, returns error
+            header("Location: " . $_SERVER['DOCUMENT_ROOT'] . '/index.php');
+            die();
+        }
+        // If no errors, signup user
+
+
     }
 }
