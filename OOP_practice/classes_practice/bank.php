@@ -45,7 +45,7 @@ class BankAccount
         }
     }
 
-    public function checkBalance()
+    public function getBalance()
     {
         // Calculate the final balance by summing up all transactions
         $finalBalance = $this->balance + array_sum($this->transactions);
@@ -55,7 +55,7 @@ class BankAccount
 
 $test = new BankAccount(324665, 50, 'John Doe');
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["checkBalance"])) {
-    $finalBalance = $test->checkBalance();
+    $finalBalance = $test->getBalance();
 }
 ?>
 
