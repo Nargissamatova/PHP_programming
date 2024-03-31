@@ -37,7 +37,8 @@ $products_arr = [
 ];
 
 foreach ($products_arr as $product) {
-    echo "Product: " . $product->name . ", Price: $" . $product->price . ", Description: " . $product->description . "<br>";
+    // echo "Product: " . $product->name . ", Price: $" . $product->price . ", Description: " . $product->description . "<br>";
+    $product->displayInfo();
 }
 
 /*
