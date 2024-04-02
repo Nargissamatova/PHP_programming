@@ -1,20 +1,19 @@
-<?php include 'db.php';
+<?php
+include 'db.php';
 
 $query = "SELECT * FROM users";
 $result = mysqli_query($conn, $query);
 if (!$result) {
   die('Query failed');
 }
-?>
 
-<?php
 if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
   $id = $_POST['id'];
 
   //Update the records in db
-  $query = "DELETE FROM users ";
+  $query = "UPDATE users SET ";
   $query .= "username = '$username', ";
   $query .= "password = '$password' ";
   $query .= "WHERE id = $id";
@@ -22,9 +21,12 @@ if (isset($_POST['submit'])) {
   $result = mysqli_query($conn, $query);
   if (!$result) {
     die("Update query failed" . mysqli_error($conn));
+  } else {
+    // Redirect to the same page after successful update
+    header("Location: " . $_SERVER["PHP_SELF"]);
+    exit;
   }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +41,7 @@ if (isset($_POST['submit'])) {
 
 <body>
   <h2>Update</h2>
-  <form action="update.php" method="post">
-
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Use PHP_SELF here -->
     <label for="username"> Username </label>
     <input type="text" name="username">
     <label for="password"> Password </label>
@@ -54,10 +55,7 @@ if (isset($_POST['submit'])) {
       ?>
     </select>
     <input type="submit" name="submit" value="UPDATE">
-
   </form>
-
-
 </body>
 
 </html>
