@@ -3,7 +3,6 @@ include 'db.php';
 
 // Query the 'users' table to fetch all records
 $query = "SELECT * FROM users";
-
 // Execute the SQL query
 $result = mysqli_query($conn, $query);
 
@@ -12,9 +11,8 @@ if (!$result) {
   // If query execution fails, terminate the script and display an error message
   die('Query failed');
 }
-?>
 
-<?php
+/*  OLD VERSION
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
   // Retrieve form data
@@ -41,7 +39,35 @@ if (isset($_POST['submit'])) {
     exit;
   }
 }
+*/
+
+
+if (isset($_POST['submit'])) {
+
+  $id = $_POST['id'];
+
+
+  $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+
+  if ($stmt === false) {
+    die("Prepare failed: " . $conn->error);
+  }
+
+  $stmt->bind_param("i", $id);
+  if ($stmt->execute()) {
+    header("Location: " . $_SERVER["PHP_SELF"]);
+  } else {
+    die("Query insertion failed");
+  }
+  $stmt->close();
+}
 ?>
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

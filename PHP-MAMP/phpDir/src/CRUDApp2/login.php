@@ -1,26 +1,26 @@
 <?php
-/*
+// Database connection settings
+$host = 'db'; // Database host
+$dbname = 'loginapp'; // Database name
+$dbuser = 'root'; // Database username
+$dbpass = 'lionPass'; // Database password
+
+// Establish a connection to MySQL server
+$conn = new mysqli($host, $dbuser, $dbpass, $dbname);
+if ($conn->connect_error) {
+    // If connection fails, show error message and terminate the script
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connected to MySQL server successfully <br/>";
+}
+
 // Check if form is submitted
 if (isset($_POST['submit'])) {
     // Retrieve username and password from form data
     $user = $_POST['username'];
     $pass = $_POST['password'];
-}
 
-// Validate the form fields
-if ($user && $pass) {
-    // If both username and password are provided, display them
-    echo $user . " " . $pass;
-} else {
-    echo 'Username and password cannot be blank <br/>';
-}
-*/
-
-if (isset($_POST['submit'])) {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
-
-    // Check if the username and password are not empty
+    // Validate the form fields
     if (!empty($user) && !empty($pass)) {
         // Prepare an INSERT statement with placeholders
         $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
@@ -38,48 +38,16 @@ if (isset($_POST['submit'])) {
             die('Query insertion failed');
         }
         // Close the prepared statement
-        $stmt->close();
     } else {
         // The username or password is empty
         // Display an error message
         echo 'Username and password cannot be empty.';
     }
 }
-
-
-// Database connection settings
-$host = 'db'; // Database host
-$dbname = 'loginapp'; // Database name
-$dbuser = 'root'; // Database username
-$dbpass = 'lionPass'; // Database password
-
-// Establish a connection to MySQL server
-$conn = new mysqli($host, $dbuser, $dbpass, $dbname);
-if ($conn->connect_error) {
-    // If connection fails, show error message and terminate the script
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected to MySQL server successfully";
-}
-
-// Create SQL query to insert username and password into 'users' table
-$query = "INSERT INTO users(username, password)";
-$query .= "VALUES('$user', '$pass')";
-
-// Execute the SQL query
-$result = mysqli_query($conn, $query);
-
-// Check if query execution was successful
-if (!$result) {
-    // If query execution fails, show error message and terminate the script
-    die('Query insertion failed');
-}
-
-
 ?>
 
 <!-- HTML form to collect username and password -->
-<form action="login.php" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     <label for="username">Username</label>
     <input type="text" name="username">
     <label for="password">Password</label>
