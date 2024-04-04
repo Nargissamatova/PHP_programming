@@ -36,7 +36,7 @@ Convert grams to kilograms
 
         if (!empty($celsius)) {
             $fahrenheit = $celsius * 9 / 5 + 32;
-            echo "Fahrenheit: " . $fahrenheit;
+            echo "Fahrenheit: " . $fahrenheit . ' ';
         }
 
         if (!empty($fahrenheit)) {
@@ -60,7 +60,7 @@ Convert grams to kilograms
 
         if (!empty($mps)) {
             $kmph = $mps * 3.6;
-            echo "Km/h: " . $kmph;
+            echo "Km/h: " . $kmph . ' ';
         }
 
         if (!empty($kmph)) {
@@ -84,7 +84,7 @@ Convert grams to kilograms
 
         if (!empty($kilograms)) {
             $pounds = $kilograms * 2.20462;
-            echo "Pounds: " . $pounds;
+            echo "Pounds: " . $pounds . ' ';
         }
 
         if (!empty($pounds)) {
