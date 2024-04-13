@@ -2,6 +2,27 @@
 include 'db.php';
 
 
+if (isset($_POST['submit'])) {
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $genre = $_POST['genre'];
+
+    // Prepare SQL statement
+    $sql = "INSERT INTO books (title, description, author, publishing_year, genre)
+            VALUES ('$title', '$description', '$author', '$year', '$genre')";
+
+    // Execute SQL statement
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        echo 'Successfully added to database';
+    } else {
+        echo 'Error: ' . $sql . '<br>' . mysqli_error($conn);
+    }
+}
+
 ?>
 
 
@@ -18,7 +39,7 @@ include 'db.php';
 
 <body>
     <div class="form-container">
-        <form>
+        <form method="post">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
                 <input type="text" name="title" class="form-control" placeholder="Atomic Habits">
@@ -47,7 +68,7 @@ include 'db.php';
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Decription</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" name="submit">Add book</button>
         </form>
