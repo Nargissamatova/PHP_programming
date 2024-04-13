@@ -1,26 +1,11 @@
-<?php
-// Database connection settings
-$host = 'db'; // Database host
-$dbname = 'loginapp'; // Database name
-$dbuser = 'root'; // Database username
-$dbpass = 'lionPass'; // Database password
+<?php include 'db.php';
 
-// Establish a connection to MySQL server
-$conn = new mysqli($host, $dbuser, $dbpass, $dbname);
-if ($conn->connect_error) {
-    // If connection fails, show error message and terminate the script
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected to MySQL server successfully <br/>";
-}
 
-// Check if form is submitted
 if (isset($_POST['submit'])) {
-    // Retrieve username and password from form data
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    // Validate the form fields
+    // Check if the username and password are not empty
     if (!empty($user) && !empty($pass)) {
         // Prepare an INSERT statement with placeholders
         $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
@@ -37,7 +22,9 @@ if (isset($_POST['submit'])) {
             // Handle errors during execution
             die('Query insertion failed');
         }
+
         // Close the prepared statement
+        // $stmt->close();
     } else {
         // The username or password is empty
         // Display an error message
@@ -45,12 +32,30 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- HTML form to collect username and password -->
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-    <label for="username">Username</label>
-    <input type="text" name="username">
-    <label for="password">Password</label>
-    <input type="password" name="password">
-    <input type="submit" name="submit" value="Submit">
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PHP CRUD App</title>
+
+
+</head>
+
+<body>
+
+    <body>
+        <form action="create.php" method="post">
+
+            <label for="username"> Username </label>
+            <input type="text" name="username">
+            <label for="password"> Password </label>
+            <input type="password" name="password">
+            <input type="submit" name="submit" value="Submit">
+
+        </form>
+    </body>
+
+</html>
