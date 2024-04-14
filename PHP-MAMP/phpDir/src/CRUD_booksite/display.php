@@ -53,8 +53,8 @@ while ($row = $result->fetch_assoc()) {
                             <td><?= $row['author'] ?></td>
                             <td><?= $row['publishing_year'] ?></td>
                             <td><?= $row['genre'] ?></td>
-                            <td><button class="btn btn-primary">Update</button></td>
-                            <td><button class="btn btn-danger">Delete</button></td>
+                            <td><button class="btn btn-secondary"><a href="update.php?updateid=<?= $row['id'] ?>" class="text-light">Update</a></button></td>
+                            <td><button class=" btn btn-danger"><a href="delete.php?deleteid=<?= $row['id'] ?>" class="text-light">Delete</a></button></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else : ?>

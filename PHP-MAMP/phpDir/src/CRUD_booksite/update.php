@@ -1,6 +1,17 @@
 <?php
 include 'db.php';
 
+$id = $_GET['updateid'];
+$sql = "SELECT * FROM books WHERE id = $id";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$title = $row['title'];
+$description = $row['description'];
+$author = $row['author'];
+$year = $row['publishing_year'];
+$genre = $row['genre'];
+
+
 
 if (isset($_POST['submit'])) {
     $title = $_POST['title'];
@@ -10,8 +21,7 @@ if (isset($_POST['submit'])) {
     $genre = $_POST['genre'];
 
     // Prepare SQL statement
-    $sql = "INSERT INTO books (title, description, author, publishing_year, genre)
-            VALUES ('$title', '$description', '$author', '$year', '$genre')";
+    $sql = "UPDATE books SET title='$title', description='$description', publishing_year='$year', genre='$genre' WHERE id='$id'";
 
     // Execute SQL statement
     $result = mysqli_query($conn, $sql);
@@ -42,19 +52,20 @@ if (isset($_POST['submit'])) {
         <form method="post">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Atomic Habits">
+                <input type="text" name="title" class="form-control" value=<?php echo $title ?>>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Author</label>
-                <input type="text" name="author" class="form-control" placeholder="John Doe">
+                <input type="text" name="author" class="form-control" value=<?php echo $author ?>>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Year</label>
-                <input type="number" name="year" class="form-control" placeholder="1984">
+                <input type="number" name="year" class="form-control" value=<?php echo $year ?>>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Genre</label>
                 <select class="form-control" name="genre" id="exampleFormControlSelect1">
+                    <option><?php echo $genre ?></option>
                     <option>Classic Literature</option>
                     <option>Science Fiction</option>
                     <option>Romance</option>
@@ -68,9 +79,9 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Decription</label>
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"><?php echo $description ?></textarea>
             </div>
-            <button type="submit" class="btn btn-success" name="submit">Add book</button>
+            <button type="submit" class="btn btn-success" name="submit">Update</button>
         </form>
     </div>
 </body>
