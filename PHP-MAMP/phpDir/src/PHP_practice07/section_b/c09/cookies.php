@@ -13,9 +13,25 @@ and also store the value from the variable in that cookie
 Step 4: A new variable should hold message saying the number of pages the visitor has viewed.
 e.g. "Page views: "
 
-
-
 */
+/*
+$counter = $_COOKIE['counter'];
+$counter_value = $counter + 1;
+setcookie('counter', $counter_value, time() + 84600 * 7);
+$msg = "Page views $counter";
+*/
+
+$counter = $_COOKIE['count'];
+$counter_value = $counter + 1;
+$exp = time() + (86400 * 7);
+
+setcookie('count', $counter_value, $exp);
+if (!isset($_COOKIE['count'])) {
+    echo "Cookie named '" . $counter . "' is not set!";
+} else {
+    echo "Cookie '" . $counter . "' is set!<br>";
+    echo "you view this page: " . $counter;
+}
 
 ?>
 

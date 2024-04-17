@@ -63,6 +63,11 @@ $test = new Calculator($num1, $num2);
 </head>
 
 <body>
+    <!--BACKGROUND ANIMATIONS-->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <!---->
     <div class="container">
         <h2>Simple calculator</h2>
         <form action="Calculator.php" method="get">
