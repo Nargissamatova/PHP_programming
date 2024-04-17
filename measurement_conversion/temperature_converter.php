@@ -27,8 +27,8 @@ Convert grams to kilograms
         <h2>Temperature Conversion</h2>
         <div class="container">
             <form method="post">
-                Celsius: <input type="text" name="celsius"><br>
-                Fahrenheit: <input type="text" name="fahrenheit"><br>
+                Celsius: <input type="number" name="celsius"><br>
+                Fahrenheit: <input type="number" name="fahrenheit"><br>
                 <?php
                 if (isset($_POST['submit_temp'])) {
                     $celsius = $_POST['celsius'];
@@ -36,7 +36,7 @@ Convert grams to kilograms
 
                     if (!empty($celsius)) {
                         $fahrenheit = $celsius * 9 / 5 + 32;
-                        echo "Fahrenheit: " . $fahrenheit . ' ';
+                        echo "Fahrenheit: " . $fahrenheit . '</br>';
                     }
 
                     if (!empty($fahrenheit)) {

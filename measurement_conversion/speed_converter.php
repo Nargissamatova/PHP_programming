@@ -14,8 +14,8 @@
         <h2>Speed Conversion</h2>
         <div class="container">
             <form method="post">
-                M/s: <input type="text" name="mps"><br>
-                Km/h: <input type="text" name="kmph"><br>
+                M/s: <input type="number" name="mps"><br>
+                Km/h: <input type="number" name="kmph"><br>
                 <?php
                 if (isset($_POST['submit_speed'])) {
                     $mps = $_POST['mps'];
@@ -23,7 +23,7 @@
 
                     if (!empty($mps)) {
                         $kmph = $mps * 3.6;
-                        echo "Km/h: " . $kmph . ' ';
+                        echo "Km/h: " . $kmph . '</br>';
                     }
 
                     if (!empty($kmph)) {

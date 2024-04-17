@@ -14,8 +14,8 @@
         <h2>Mass Conversion</h2>
         <div class="container">
             <form method="post">
-                Kilograms: <input type="text" name="kilograms"><br>
-                Pounds: <input type="text" name="pounds"><br>
+                Kilograms: <input type="number" name="kilograms"><br>
+                Pounds: <input type="number" name="pounds"><br>
                 <?php
                 if (isset($_POST['submit_mass'])) {
                     $kilograms = $_POST['kilograms'];
@@ -23,7 +23,7 @@
 
                     if (!empty($kilograms)) {
                         $pounds = $kilograms * 2.20462;
-                        echo "Pounds: " . $pounds . ' ';
+                        echo "Pounds: " . $pounds . '</br>';
                     }
 
                     if (!empty($pounds)) {
