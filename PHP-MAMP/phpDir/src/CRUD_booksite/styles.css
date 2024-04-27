@@ -5,6 +5,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 12;
+    margin: 4em auto;
 }
 
 .form-group {
@@ -38,5 +39,3 @@
 .btn-primary:hover {
     background-color: #0f8831;
 }
-
-/*ANIMATIONS BACKGROUND*/
