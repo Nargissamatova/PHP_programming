@@ -1,12 +1,12 @@
 <?php
 require_once 'db.php';
 
-// Retrieve all books from the 'books' table
+// retrieve all books from the 'books' table
 $result = $conn->query("SELECT * FROM books");
 
-// Initialize an array to hold the book data
+// create an array to hold the book data
 $rows = array();
-// Fetch each row of book data and add it to the $rows array
+// fetch each row of book data and add it to the $rows array
 while ($row = $result->fetch_assoc()) {
     $rows[] = $row;
 }
@@ -50,7 +50,7 @@ echo "</pre>";
                         <a class="nav-link" href="display.php?genre=Fantasy">Fantasy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="display.php?genre=Historical">Historical Fiction</a>
+                        <a class="nav-link" href="display.php?genre=Historical+Fiction">Historical Fiction</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="display.php?genre=Horror">Horror</a>
@@ -122,7 +122,7 @@ echo "</pre>";
 </html>
 
 <!--
-                // Check if the genre is set and matches the book's genre or if the genre is not set (display all books)
+                // check if the genre is set and matches the book s genre or if the genre is not set (display all books)
                 if ((!isset($_GET['genre']) || $_GET['genre'] === $book['genre'])) {
                     echo '<section class="book">';
                     echo '<a class="bookmark fa ' . ($isFavorited ? 'fa-star' : 'fa-star-o') . '" href="setfavorite.php?id=' . $book['id'] . '"></a>';

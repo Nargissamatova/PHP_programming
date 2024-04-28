@@ -4,7 +4,7 @@ include 'db.php';
 $id = $_GET['updateid'];
 $sql = "SELECT * FROM books WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_bind_param($stmt, "i", $id); // i = id
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $row = mysqli_fetch_assoc($result);
@@ -22,10 +22,9 @@ if (isset($_POST['submit'])) {
     $year = $_POST['year'];
     $genre = $_POST['genre'];
 
-    // Prepare SQL statement
     $sql = "UPDATE books SET title=?, description=?, publishing_year=?, genre=? WHERE id=?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssisi", $title, $description, $year, $genre, $id);
+    mysqli_stmt_bind_param($stmt, "ssisi", $title, $description, $year, $genre, $id); // ssisi = string + integer
     $result = mysqli_stmt_execute($stmt);
 
     if ($result) {
