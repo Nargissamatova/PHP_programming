@@ -104,6 +104,7 @@ echo "</pre>";
                                 <td><?= $row['author'] ?></td>
                                 <td><?= $row['publishing_year'] ?></td>
                                 <td><?= $row['genre'] ?></td>
+                                <!-- get id from row that was clicked -->
                                 <td><button class="btn btn-secondary"><a href="update.php?updateid=<?= $row['id'] ?>" class="text-light">Update</a></button></td>
                                 <td><button class=" btn btn-danger"><a href="delete.php?deleteid=<?= $row['id'] ?>" class="text-light">Delete</a></button></td>
                             </tr>
