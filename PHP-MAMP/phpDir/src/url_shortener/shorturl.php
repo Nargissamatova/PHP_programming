@@ -1,5 +1,6 @@
 <?php
-// Check if the form was submitted
+include 'db.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // URL to the Unelma.IO API
   $url = 'https://unelma.io/api/v1/link';
@@ -37,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Check for errors
   if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
+    $shortUrl = 'Error: ' . curl_error($ch);
   } else {
     // Decode the response
     $responseDecoded = json_decode($response, true);
@@ -45,68 +46,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($responseDecoded['link']) && isset($responseDecoded['link']['short_url'])) {
       // Output the shortened URL
       $shortUrl = $responseDecoded['link']['short_url'];
-      echo 'Shortened URL: <a href="' . $shortUrl . '">' . $shortUrl . '</a>';
 
       // Store the shortened URL in the database
-      // Database connection parameters
-      $servername = "db";
-      $username = "root";
-      $password = "lionPass";
-      $dbname = "url_shortener"; // Your database name
-
-      // Create connection
-      $conn = new mysqli($servername, $username, $password, $dbname);
-
-      // Check connection
-      if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-      }
-
       // Prepare SQL statement
       $stmt = $conn->prepare("INSERT INTO links (long_url, short_url) VALUES (?, ?)");
       $stmt->bind_param("ss", $longUrl, $shortUrl);
 
       // Execute SQL statement
       if ($stmt->execute() === TRUE) {
-        echo "<br>Shortened URL stored successfully in the database.";
+        $shortUrlMessage = "Shortened URL stored successfully in the database.";
       } else {
-        echo "<br>Error storing shortened URL in the database: " . $conn->error;
+        $shortUrlMessage = "Error storing shortened URL in the database: " . $conn->error;
       }
 
-      // Close statement and database connection
+      // Close statement
       $stmt->close();
-      $conn->close();
     } else {
       // Handle the case where 'short_url' key doesn't exist
-      echo 'The key "short_url" does not exist in the response.';
+      $shortUrl = 'The key "short_url" does not exist in the response.';
     }
   }
 
   // Close cURL session
   curl_close($ch);
 }
+
+// Fetch stored URLs from the database
+$sql = "SELECT * FROM links";
+$result = $conn->query($sql);
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="shorturl.css">
   <title>URL Shortener</title>
-
 </head>
 
 <body>
-  <div>
+  <div class="container">
     <h2>URL Shortener</h2>
-    <form method="post">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <label for="longUrl">Enter URL to shorten:</label>
       <input type="text" id="longUrl" name="longUrl" required>
       <button type="submit">Shorten URL</button>
     </form>
+
+    <?php if (isset($shortUrl)) : ?>
+      <p><?php echo $shortUrl; ?></p>
+    <?php endif; ?>
+    <?php if (isset($shortUrlMessage)) : ?>
+      <p><?php echo $shortUrlMessage; ?></p>
+    <?php endif; ?>
+
+    <h3>Stored URLs</h3>
+    <table>
+      <tr>
+        <th>Long URL</th>
+        <th>Shortened URL</th>
+      </tr>
+      <?php
+      if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+          echo "<tr><td>" . $row["long_url"] . "</td><td><a href='" . $row["short_url"] . "'>" . $row["short_url"] . "</a></td></tr>";
+        }
+      } else {
+        echo "<tr><td colspan='2'>No URLs stored in the database</td></tr>";
+      }
+      ?>
+    </table>
   </div>
 </body>
 
